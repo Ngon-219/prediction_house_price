@@ -3,6 +3,7 @@ use linfa_linear::LinearRegression;
 use ndarray::Array2;
 use std::error::Error;
 use csv::ReaderBuilder;
+mod gen_data;
 
 fn format_number(n: f64) -> String {
     let s = n.to_string();
@@ -20,6 +21,7 @@ fn format_number(n: f64) -> String {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
+    gen_data::main()?;
     let mut rdr = ReaderBuilder::new().from_path("data.csv")?;
     let mut features: Vec<Vec<f64>> = Vec::new();
     let mut targets: Vec<f64> = Vec::new();
